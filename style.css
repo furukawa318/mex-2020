@@ -1,5 +1,3 @@
-
-
 #global-navi {
     background:#c08c5b;
     position: fixed;
@@ -35,6 +33,71 @@ padding:  15px 20px 15px 28px;
     background:  #c08c5b;/*ボタン色*/
     color: rgb(255, 255, 255);
 }
+
+.btn-cart{
+    position: absolute;
+    left: 30px;
+    bottom: 0px;
+    display: inline-block;
+    width: 40%;
+    padding: 10px 3px;
+    text-align: center;
+    background:  #c08c5b;/*ボタン色*/
+    color: rgb(255, 255, 255);
+}
+.btn-cart:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-bottom: 100px solid  #c08c5b;
+  }
+  .btn-cart:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-right: 30px solid transparent;
+    border-bottom: 100px solid  #c08c5b;
+  }
+
+.btn-syousai{
+    position: absolute;
+    right: 30px;
+    bottom: 0px;
+    display: inline-block;
+    width: 40%;
+    padding: 10px 3px;
+    text-align: center;
+    background:  #c08c5b;/*ボタン色*/
+    color: rgb(255, 255, 255);
+}
+
+.btn-syousai:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-bottom: 100px solid  #c08c5b;
+  }
+  .btn-syousai:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-right: 30px solid transparent;
+    border-bottom: 100px solid  #c08c5b;
+  }
 
 .foot{
     min-height: 100vh;
