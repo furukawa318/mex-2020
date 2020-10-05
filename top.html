@@ -9,6 +9,48 @@
     <link rel="stylesheet" href="style.css">
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+  <script>
+    // ページの読み込みを待つ
+    window.addEventListener('load', init);
+
+    function init() {
+
+      // サイズを指定
+      const width = 960;
+      const height = 540;
+
+      // レンダラーを作成
+      const renderer = new THREE.WebGLRenderer({
+        canvas: document.querySelector('#myCanvas')
+      });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(width, height);
+
+      // シーンを作成
+      const scene = new THREE.Scene();
+
+      // カメラを作成
+      const camera = new THREE.PerspectiveCamera(45, width / height);
+      camera.position.set(0, 0, +1000);
+
+      // 箱を作成
+      const geometry = new THREE.BoxGeometry(400, 400, 400);
+      const material = new THREE.MeshNormalMaterial();
+      const box = new THREE.Mesh(geometry, material);
+      scene.add(box);
+
+      tick();
+
+      // 毎フレーム時に実行されるループイベントです
+      function tick() {
+        box.rotation.y += 0.01;
+        renderer.render(scene, camera); // レンダリング
+
+        requestAnimationFrame(tick);
+      }
+    }
+  </script>
 </head>
 
  <div id="wrapper">
@@ -21,6 +63,9 @@
 
 <body>
 
+<div class="md-body"><canvas id="myCanvas"></canvas></div>
+    
+
  <a href="#" class="btn-square">BACK</a>
 
  <a href="" class="btn-tuika">カートに入れる</a>
@@ -31,14 +76,6 @@
 
 
 </body>
-
-<!--
-   <div class="foot">
-    <footer>
-      <p>(c)copy right</p>
-    </footer>
-  </div> 
--->
 
 
 </html>
