@@ -3,6 +3,12 @@ window.addEventListener('load', init);
 
 function init() {
 
+  const cartElement = document.querySelector('.cart');
+  console.log(cartElement);
+
+  const BtnCart = document.querySelector('.btn-cart');
+  console.log(BtnCart);
+
   // サイズを指定
   const width = 360;
   const height = 640;
@@ -11,7 +17,7 @@ function init() {
   const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector('#myCanvas')
   });
-  
+
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
 
@@ -38,5 +44,4 @@ function init() {
     requestAnimationFrame(tick);
   }
 }
-
 
