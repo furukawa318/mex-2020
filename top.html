@@ -10,58 +10,18 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
-  <script>
-    // ページの読み込みを待つ
-    window.addEventListener('load', init);
-
-    function init() {
-
-      // サイズを指定
-      const width = 360;
-      const height = 640;
-
-      // レンダラーを作成
-      const renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector('#myCanvas')
-      });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(width, height);
-
-      // シーンを作成
-      const scene = new THREE.Scene();
-
-      // カメラを作成
-      const camera = new THREE.PerspectiveCamera(45, width / height);
-      camera.position.set(0, 0, +1000);
-
-      // 箱を作成
-      const geometry = new THREE.BoxGeometry(200, 200, 200);
-      const material = new THREE.MeshNormalMaterial();
-      const box = new THREE.Mesh(geometry, material);
-      scene.add(box);
-
-      tick();
-
-      // 毎フレーム時に実行されるループイベントです
-      function tick() {
-        box.rotation.y += 0.01;
-        renderer.render(scene, camera); // レンダリング
-
-        requestAnimationFrame(tick);
-      }
-    }
-  </script>
+    <script src="js/index.js"></script>
 </head>
 
- <div id="wrapper">
+<body>
+
+    <div id="wrapper">
         <nav id="global-navi">
             <ul class="menu">
                 <p>title</p>
             </ul>
         </nav>
     </div>
-
-<body>
 
 <div class="md-body"><canvas id="myCanvas"></canvas></div>
     
@@ -70,7 +30,37 @@
 
  <a href="" class="btn-tuika">カートに入れる</a>
    
-<a href="" class="btn-cart">Cart</a>
+ <div class="cart">
+    <a href="" class="btn-cart">Cart</a>
+    <div class="cart-body">
+      <ul class="cart-list">
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.cart -->
 
 <a href="" class="btn-syousai">商品詳細</a>
 

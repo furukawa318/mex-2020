@@ -10,6 +10,7 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+    <script src="js/index.js"></script>
   <script>
     // ページの読み込みを待つ
     window.addEventListener('load', init);
@@ -24,27 +25,36 @@
       const renderer = new THREE.WebGLRenderer({
         canvas: document.querySelector('#myCanvas')
       });
-      renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(width, height);
 
       // シーンを作成
       const scene = new THREE.Scene();
 
       // カメラを作成
-      const camera = new THREE.PerspectiveCamera(45, width / height);
+      const camera = new THREE.PerspectiveCamera(45, width / height,1,10000);
       camera.position.set(0, 0, +1000);
 
-      // 箱を作成
-      const geometry = new THREE.BoxGeometry(400, 400, 400);
-      const material = new THREE.MeshNormalMaterial();
-      const box = new THREE.Mesh(geometry, material);
-      scene.add(box);
+      // 球体を作成
+      const geometry= new THREE.SphereGeometry(300,30,30);
+      const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
+      
+      //メッシュの作成
+      const mesh = new THREE.Mesh(geometry,material);
+      
+      scene.add(mesh);
+
+      //平行光源
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+      directionalLight.position.set(1,1,1);
+
+      scene.add(directionalLight);
 
       tick();
+   
 
       // 毎フレーム時に実行されるループイベントです
       function tick() {
-        box.rotation.y += 0.01;
+        mesh.rotation.y +=0.01;
         renderer.render(scene, camera); // レンダリング
 
         requestAnimationFrame(tick);
