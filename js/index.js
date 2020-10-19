@@ -9,6 +9,11 @@ function init() {
   const BtnCart = document.querySelector('.btn-cart');
   console.log(BtnCart);
 
+  BtnCart.addEventListener("click", () =>{
+    console.log("ボタンがクリックされました");
+    cartElement.classList.toggle('cart-open');
+  });
+
   // サイズを指定
   const width = 360;
   const height = 640;

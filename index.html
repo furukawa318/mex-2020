@@ -10,76 +10,54 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
-    <script src="js/index.js"></script>
-  <script>
+    <script src="js/controls/OrbitControls.js"></script>
+
+<script>
     // ページの読み込みを待つ
     window.addEventListener('load', init);
 
-    function init() {
+    // サイズを指定
+    const width = 960;
+    const height = 540;
 
-      // サイズを指定
-      const width = 960;
-      const height = 540;
+    // レンダラーを作成
+    const renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#myCanvas'),
+    });
+    renderer.setSize(width, height);
 
-      // レンダラーを作成
-      const renderer = new THREE.WebGLRenderer({
-        canvas: document.querySelector('#myCanvas')
-      });
-      renderer.setSize(width, height);
+    // シーンを作成
+    const scene = new THREE.Scene();
 
-      // シーンを作成
-      const scene = new THREE.Scene();
+    // カメラを作成
+    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+    //　カメラ初期位置
+    camera.position.set(0, 0, 1000);
 
-      // カメラを作成
-      const camera = new THREE.PerspectiveCamera(45, width / height,1,10000);
-      camera.position.set(0, 0, +1000);
+    // カメラコントローラーを作成
+    const controls = new THREE.OrbitControls(camera);
 
-      // 球体を作成
-      const geometry= new THREE.SphereGeometry(300,30,30);
-      const material = new THREE.MeshStandardMaterial({color: 0xFF0000});
-      
-      //メッシュの作成
-      const mesh = new THREE.Mesh(geometry,material);
-      
-      scene.add(mesh);
+    // 形状とマテリアルからメッシュを作成します
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(300, 300, 300),
+      new THREE.MeshNormalMaterial());
+    scene.add(mesh);
 
-      //平行光源
-      const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
-      directionalLight.position.set(1,1,1);
+    tick();
 
-      scene.add(directionalLight);
-
-      tick();
-   
-
-      // 毎フレーム時に実行されるループイベントです
-      function tick() {
-        mesh.rotation.y +=0.01;
-        renderer.render(scene, camera); // レンダリング
-
-        requestAnimationFrame(tick);
-      }
+    // 毎フレーム時に実行されるループイベントです
+    function tick() {
+      // レンダリング
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
     }
   </script>
 </head>
 
 <body class="md-body">
     
-    <canvas id="myCanvas"></canvas>
-<!--  
-    <model-viewer class="md-mv" src="assets/Mikan1.glb" alt="A 3D model of an astronaut" auto-rotate camera-controls
-        shadow-intensity="1" ar ar-scale="fixed">
-    </model-viewer>
--->
-  
-<!--
-   <div class="foot">
-    <footer>
-      <p>(c)copy right</p>
-    </footer>
-  </div> 
--->
-    
+  <canvas id="myCanvas"></canvas>
+
 </body>
 
 </html>
