@@ -38,42 +38,6 @@
     z-index: 1;
 }
 
-.btn-syousai {
-    position: fixed;
-    right: 30px;
-    bottom: 0px;
-    display: inline-block;
-    width: 40%;
-    height: 40px;
-    padding: 10px 3px;
-    text-align: center;
-    background: #8f643d;/*ボタン色*/
-    color: rgb(255, 255, 255);
-    z-index: 3;
-}
-
-.btn-syousai:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 100%;
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-bottom: 40px solid #8f643d;
-}
-
-.btn-syousai:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 0;
-    height: 0;
-    border-right: 20px solid transparent;
-    border-bottom: 40px solid #8f643d;
-}
-
 .foot {
     min-height: 100vh;
     position: relative;/*←相対位置*/
@@ -158,24 +122,25 @@ footer {
     border-bottom: 40px solid #c08c5b;
 }
 
-.cart-body{
+.cart-body {
     padding: 0 10px;
     height: 100%;
 }
 
-.cart-list{
+.cart-list {
     height: 100%;
     border: 3px solid #c08c5b;
     padding: 20px 20px;
+    background-color: white;
     overflow: scroll;
 }
 
-.cart-item{
+.cart-item {
     display: flex;
     margin: 0 0 30px;
 }
 
-.cart-item:last-child{
+.cart-item:last-child {
     margin: 0;
 }
 
@@ -183,12 +148,72 @@ footer {
     width: 40%;
 }
 
-.cart-detail{
+.cart-detail {
     width: 60%;
     padding: 0 0 0 20px;
 }
 
-.cart-title{
+.cart-title {
     font-size: 16px;
     letter-spacing: 1em;/*文字の間隔・カーニング*/
+}
+
+/*descriptionのスタイル*/
+.description {
+    z-index: 2;
+    height: 50%;
+    bottom: -50%;
+    right: 0;
+    position: fixed;
+    transition: bottom 0.4s cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+.description-open {
+    bottom: 0%;
+}
+
+.btn-description {
+    right: 30px;
+    bottom: 0px;
+    display: inline-block;
+    width: 40%;
+    height: 40px;
+    padding: 10px 3px;
+    text-align: center;
+    text-decoration: none;
+    background: #8f643d;/*ボタン色*/
+    position: absolute;
+    color: rgb(255, 255, 255);
+    z-index: 2;
+    bottom: 100%;
+}
+
+.btn-description:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-bottom: 40px solid #8f643d;
+}
+
+.btn-description:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    border-right: 20px solid transparent;
+    border-bottom: 40px solid #8f643d;
+}
+
+.description-body {
+    margin: 0 10px;
+    height: 100%;
+    border: 3px solid #8f643d;
+    background-color: white;
+    overflow: scroll;
 }

@@ -2,16 +2,29 @@
 window.addEventListener('load', init);
 
 function init() {
-
+  
+  //　const new名前 = で使えるようにする
   const cartElement = document.querySelector('.cart');
   console.log(cartElement);
 
   const BtnCart = document.querySelector('.btn-cart');
   console.log(BtnCart);
 
+  //　動作指定
   BtnCart.addEventListener("click", () =>{
     console.log("ボタンがクリックされました");
     cartElement.classList.toggle('cart-open');
+  });
+
+  const descriptionElement = document.querySelector('.description');
+  console.log(descriptionElement);
+
+  const BtnDescription = document.querySelector('.btn-description');
+  console.log(BtnDescription);
+
+  BtnDescription.addEventListener("click",() =>{
+    console.log("ボタンがクリックされました");
+    descriptionElement.classList.toggle('description-open');
   });
 
   // サイズを指定
