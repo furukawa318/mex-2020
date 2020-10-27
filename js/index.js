@@ -52,11 +52,24 @@ function init() {
   const plane = new THREE.Mesh(geometry, material);
   scene.add(plane);
 
+  const geometry2 = new THREE.PlaneGeometry(100, 100, 100);
+  const material2 = new THREE.MeshBasicMaterial({color: 0xFF0000, side:THREE.DoubleSide});
+  const plane2 = new THREE.Mesh(geometry2, material2);
+  plane2.position.set(110,0,0);
+  scene.add(plane2);
+
+  const geometry3 = new THREE.PlaneGeometry(100, 100, 100);
+  const material3 = new THREE.MeshBasicMaterial({color: 0xFF0000, side:THREE.DoubleSide});
+  const plane3 = new THREE.Mesh(geometry3, material3);
+  plane3.position.set(-110,0,0);
+  scene.add(plane3);
+
   tick();
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
     plane.rotation.y += 0.01;
+
     // レンダリング
     renderer.render(scene, camera); 
 
