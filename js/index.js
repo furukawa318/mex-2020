@@ -28,8 +28,8 @@ function init() {
   });
 
   // サイズを指定
-  const width = 360;
-  const height = 640;
+  const width = 960;
+  const height = 540;
 
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
@@ -57,9 +57,30 @@ function init() {
   // 毎フレーム時に実行されるループイベントです
   function tick() {
     box.rotation.y += 0.01;
-    renderer.render(scene, camera); // レンダリング
+    // レンダリング
+    renderer.render(scene, camera); 
 
     requestAnimationFrame(tick);
+  }
+
+  //初期化のために実行
+  //リサイズ発生時に実行
+  onResize();
+  window.addEventListener('resize', onResize);
+
+  function onResize(){
+    //サイズ取得
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    //レンダラーのサイズを調整
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+
+    //カメラのアスペクト比をただす
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+
   }
 }
 
