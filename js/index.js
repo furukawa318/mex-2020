@@ -46,17 +46,17 @@ function init() {
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight);
   camera.position.set(0, 0, +1000);
 
-  // 箱を作成
-  const geometry = new THREE.BoxGeometry(200, 200, 200);
-  const material = new THREE.MeshNormalMaterial();
-  const box = new THREE.Mesh(geometry, material);
-  scene.add(box);
+  // 壁を作成
+  const geometry = new THREE.PlaneGeometry(100, 100, 100);
+  const material = new THREE.MeshBasicMaterial({color: 0xFF0000, side:THREE.DoubleSide});
+  const plane = new THREE.Mesh(geometry, material);
+  scene.add(plane);
 
   tick();
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
-    box.rotation.y += 0.01;
+    plane.rotation.y += 0.01;
     // レンダリング
     renderer.render(scene, camera); 
 
