@@ -20,15 +20,19 @@
     padding: 15px 20px 15px 28px;
 }
 
-.btn-Back {
+a.btn-Back {
     position: fixed;
     top: 12%;
     right: 20px;
     display: inline-block;
-    padding: 1px 3px;
     text-decoration: none;
+    text-align: center;
+    line-height: 3.5em;
     background: #c08c5b;/*ボタン色*/
     color: rgb(255, 255, 255);
+    border-radius: 100%;
+    width: 70px;
+    height: 70px;
     font-size: 120%;
     z-index: 1;
 }
@@ -38,10 +42,11 @@
     bottom: 80px;
     right: 20px;
     display: inline-block;
-    padding: 1px 3px;
+    padding: 5px 10px;
     text-decoration: none;
     background: #c08c5b;/*ボタン色*/
     color: rgb(255, 255, 255);
+    border-radius: 1rem;
     z-index: 1;
 }
 
@@ -99,6 +104,7 @@ footer {
     width: 40%;
     height: 40px;
     padding: 10px 3px;
+    margin: 0;
     text-align: center;
     text-decoration: none;
     background: #c08c5b;/*ボタン色*/
@@ -221,6 +227,22 @@ footer {
     margin: 0 10px;
     height: 100%;
     border: 3px solid #8f643d;
+    padding: 25px 30px;
     background-color: white;
     overflow: scroll;
+}
+
+.description-title {
+    font-size: 24px;
+    letter-spacing: 1em;/*文字の間隔・カーニング*/
+}
+
+.description-price{
+    font-size: 20px;
+    color: red;
+}
+
+.description-para {
+    margin-top: 15px;
+    font-size: 16px;
 }
