@@ -44,7 +44,9 @@ function init() {
 
   // カメラを作成
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight);
-  camera.position.set(0, 0, +1000);
+
+  const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
+  scene.add(light);
 
   // 壁を作成
   const geometry = new THREE.PlaneGeometry(100, 100, 100);
@@ -56,28 +58,35 @@ function init() {
   const geometry2 = new THREE.PlaneGeometry(100, 100, 100);
   const material2 = new THREE.MeshBasicMaterial({color: 0xFF0000, side:THREE.DoubleSide});
   const plane2 = new THREE.Mesh(geometry2, material2);
-  plane2.position.set(100, 0, 0);
-  plane2.rotation.y = 90;
+  plane2.position.set(50, 0, 50);
+  plane2.rotation.y = 1.5708;
   scene.add(plane2);
 
   const geometry3 = new THREE.PlaneGeometry(100, 100, 100);
   const material3 = new THREE.MeshBasicMaterial({color: 0xFF0000, side:THREE.DoubleSide});
   const plane3 = new THREE.Mesh(geometry3, material3);
-  plane3.position.set(-110, 0, 0);
-  plane3.rotation.y = -90;
+  plane3.position.set(-50, 0, 50);
+  plane3.rotation.y = 1.5708;
   scene.add(plane3);
 
   const geometry4 = new THREE.PlaneGeometry(100, 100, 100);
   const material4 = new THREE.MeshBasicMaterial({color: blur, side:THREE.DoubleSide});
   const plane4 = new THREE.Mesh(geometry4, material4);
-  plane4.position.set(0, -50, 100);
-  plane4.rotation.x = 90;
+  plane4.position.set(0, -50, 50);
+  plane4.rotation.x = 1.5708;
   scene.add(plane4);
 
   tick();
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
+    camera.position.x = 500 * Math.sin(Date.now() / 2000);
+    camera.position.y = 250;
+    camera.position.z = 500 * Math.cos(Date.now() / 2000);
+    // 原点方向を見つめる
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+
     // レンダリング
     renderer.render(scene, camera); 
 
