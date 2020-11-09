@@ -44,6 +44,9 @@ function init() {
 
   // カメラを作成
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight);
+  camera.position.x = 0;
+  camera.position.y = 0;
+  camera.position.z = 500;
 
   const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
   scene.add(light);
@@ -112,11 +115,7 @@ function init() {
 
   // 毎フレーム時に実行されるループイベントです
   function tick() {
-    camera.position.x = 0 * Math.sin(Date.now() / 3000);
-    camera.position.y = 0;
-    camera.position.z = 500
-    // 原点方向を見つめる
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    
 
     raycaster.setFromCamera(mouse, camera);
 
