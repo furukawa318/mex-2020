@@ -1,35 +1,14 @@
 // ページの読み込みを待つ
 window.addEventListener('load', init);
+CameraControls.install( { THREE: THREE } );
 
 function init() {
-  
-  //　const 新しい名前 = で使えるようにする
-  const cartElement = document.querySelector('.cart');
-  console.log(cartElement);
-
-  const BtnCart = document.querySelector('.btn-cart');
-  console.log(BtnCart);
-
-  //　動作指定
-  BtnCart.addEventListener("click", () =>{
-    console.log("ボタンがクリックされました");
-    cartElement.classList.toggle('cart-open');
-  });
-
-  const descriptionElement = document.querySelector('.description');
-  console.log(descriptionElement);
-
-  const BtnDescription = document.querySelector('.btn-description');
-  console.log(BtnDescription);
-
-  BtnDescription.addEventListener("click",() =>{
-    console.log("ボタンがクリックされました");
-    descriptionElement.classList.toggle('description-open');
-  });
 
   const mouse = new THREE.Vector2();
 
   const canvas = document.querySelector('#myCanvas');
+
+  const clock = new THREE.Clock();
 
   // レンダラーを作成
   const renderer = new THREE.WebGLRenderer({
@@ -47,6 +26,8 @@ function init() {
   camera.position.x = 0;
   camera.position.y = 0;
   camera.position.z = 500;
+
+  const cameraControls = new CameraControls( camera, renderer.domElement );
 
   const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
   scene.add(light);
@@ -112,10 +93,12 @@ function init() {
     mouse.y = -(y / h) * 2 + 1;
   }
 
-
   // 毎フレーム時に実行されるループイベントです
   function tick() {
-    
+    //前の時間との差分
+    const delta = clock.getDelta();
+    cameraControls.update( delta );
+
 
     raycaster.setFromCamera(mouse, camera);
 
@@ -159,5 +142,30 @@ function init() {
     camera.updateProjectionMatrix();
 
   }
-}
 
+  //　const 新しい名前 = で使えるようにする
+  const cartElement = document.querySelector('.cart');
+  console.log(cartElement);
+
+  const BtnCart = document.querySelector('.btn-cart');
+  console.log(BtnCart);
+
+  //　動作指定
+  BtnCart.addEventListener("click", () =>{
+    console.log("ボタンがクリックされました");
+    cartElement.classList.toggle('cart-open');
+    cameraControls.dolly(100, true);
+  });
+
+  const descriptionElement = document.querySelector('.description');
+  console.log(descriptionElement);
+
+  const BtnDescription = document.querySelector('.btn-description');
+  console.log(BtnDescription);
+
+  BtnDescription.addEventListener("click",() =>{
+    console.log("ボタンがクリックされました");
+    descriptionElement.classList.toggle('description-open');
+  });
+
+}
