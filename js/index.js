@@ -63,7 +63,7 @@ function init() {
 
   //床
   const geometry5 = new THREE.PlaneGeometry(200, 150, 100);
-  const material5 = new THREE.MeshLambertMaterial();
+  const material5 = new THREE.MeshLambertMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
   const plane5 = new THREE.Mesh(geometry5, material5);
   plane5.position.set(0, -50, 50);
   plane5.rotation.x = -1.5708;
@@ -72,8 +72,7 @@ function init() {
   const meshList = [];
   for (let i = 0; i< 4; i++) {
     const PanelGeometry = new THREE.PlaneGeometry(20, 30, 10);
-    const PanelMaterial = new THREE.MeshLambertMaterial({color: 	
-    0x00FF00, side:THREE.DoubleSide});
+    const PanelMaterial = new THREE.MeshLambertMaterial({color: 0x00FF00, side:THREE.DoubleSide});
     const panel = new THREE.Mesh(PanelGeometry, PanelMaterial);
     scene.add(panel)
 
