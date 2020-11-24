@@ -29,43 +29,52 @@ function init() {
 
   const cameraControls = new CameraControls( camera, renderer.domElement );
 
-  const light = new THREE.AmbientLight(0xFFFFFF, 1.0);
+  //　ライトを作成
+  const light = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF, 1);
   scene.add(light);
 
   // 壁を作成
   const geometry = new THREE.PlaneGeometry(200, 100, 100);
-  const material = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
+  const material = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
   const plane = new THREE.Mesh(geometry, material);
   plane.position.set(0, 0, -25);
   scene.add(plane);
 
   const geometry2 = new THREE.PlaneGeometry(150, 100, 100);
-  const material2 = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
+  const material2 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
   const plane2 = new THREE.Mesh(geometry2, material2);
   plane2.position.set(100, 0, 50);
-  plane2.rotation.y = 1.5708;
+  plane2.rotation.y = -1.5708;
   scene.add(plane2);
 
   const geometry3 = new THREE.PlaneGeometry(150, 100, 100);
-  const material3 = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
+  const material3 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
   const plane3 = new THREE.Mesh(geometry3, material3);
   plane3.position.set(-100, 0, 50);
   plane3.rotation.y = 1.5708;
   scene.add(plane3);
 
-  const geometry4 = new THREE.PlaneGeometry(200, 150, 100);
-  const material4 = new THREE.MeshBasicMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
+  const geometry4 = new THREE.PlaneGeometry(200, 100, 100);
+  const material4 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
   const plane4 = new THREE.Mesh(geometry4, material4);
-  plane4.position.set(0, -50, 50);
-  plane4.rotation.x = 1.5708;
+  plane4.position.set(0, 0, 125);
+  plane4.rotation.y = 3.1416;
   scene.add(plane4);
+
+  //床
+  const geometry5 = new THREE.PlaneGeometry(200, 150, 100);
+  const material5 = new THREE.MeshLambertMaterial();
+  const plane5 = new THREE.Mesh(geometry5, material5);
+  plane5.position.set(0, -50, 50);
+  plane5.rotation.x = -1.5708;
+  scene.add(plane5);
 
   const meshList = [];
   for (let i = 0; i< 4; i++) {
-    const geometry5 = new THREE.PlaneGeometry(20, 50, 10);
-    const material5 = new THREE.MeshBasicMaterial({color: 	
+    const PanelGeometry = new THREE.PlaneGeometry(20, 30, 10);
+    const PanelMaterial = new THREE.MeshLambertMaterial({color: 	
     0x00FF00, side:THREE.DoubleSide});
-    const panel = new THREE.Mesh(geometry5, material5);
+    const panel = new THREE.Mesh(PanelGeometry, PanelMaterial);
     scene.add(panel)
 
     panel.position.set(-60 + 40 *i, 0, -20);
@@ -151,7 +160,7 @@ function init() {
   console.log(BtnCart);
 
   //　動作指定
-  BtnCart.addEventListener("click", () =>{
+  BtnCart.addEventListener("click",() =>{
     console.log("ボタンがクリックされました");
     cartElement.classList.toggle('cart-open');
     cameraControls.dolly(100, true);
