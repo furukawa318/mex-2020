@@ -30,8 +30,32 @@ function init() {
   const cameraControls = new CameraControls( camera, renderer.domElement );
 
   //　ライトを作成
-  const light = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF, 1);
+  const light = new THREE.DirectionalLight(0xFFFFFF, 1);
   scene.add(light);
+
+  const light2 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light2.position.set(-80, 30, 0);
+  scene.add(light2);
+
+  const light3 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light3.position.set(0, 30, 0);
+  scene.add(light3);
+
+  const light4 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light4.position.set(80, 30, 0);
+  scene.add(light4);
+
+  const light5 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light5.position.set(-80, 30, 100);
+  scene.add(light5);
+
+  const light6 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light6.position.set(0, 30, 100);
+  scene.add(light6);
+
+  const light7 = new THREE.PointLight(0xFFFFFF, 2, 100);
+  light7.position.set(80, 30, 100);
+  scene.add(light7);
 
   // 壁を作成
   const geometry = new THREE.PlaneGeometry(200, 100, 100);
@@ -84,6 +108,7 @@ function init() {
   const raycaster = new THREE.Raycaster();
 
   canvas.addEventListener('mousemove', handleMouseMove);
+  canvas.addEventListener('mousedown', handleMouseDown);
 
   tick();
 
@@ -101,12 +126,39 @@ function init() {
     mouse.y = -(y / h) * 2 + 1;
   }
 
+  function handleMouseDown(event) {
+    const element = event.currentTarget;
+    // canvas要素上のXY座標
+    const x = event.clientX - element.offsetLeft;
+    const y = event.clientY - element.offsetTop;
+    // canvas要素の幅・高さ
+    const w = element.offsetWidth;
+    const h = element.offsetHeight;
+
+    // -1〜+1の範囲で現在のマウス座標を登録する
+    mouse.x = (x / w) * 2 - 1;
+    mouse.y = -(y / h) * 2 + 1;
+
+    raycaster.setFromCamera(mouse, camera);
+
+    // その光線とぶつかったオブジェクトを得る
+    const intersects = raycaster.intersectObjects(meshList);
+
+    meshList.map(panel => {
+      // 交差しているオブジェクトが1つ以上存在し、
+      // 交差しているオブジェクトの1番目(最前面)のものだったら
+      if (intersects.length > 0 && panel === intersects[0].object) {
+        // 色を赤くする
+        cameraControls.fitTo(intersects[0].object, true);
+      } 
+    });
+  }
+
   // 毎フレーム時に実行されるループイベントです
   function tick() {
     //前の時間との差分
     const delta = clock.getDelta();
     cameraControls.update( delta );
-
 
     raycaster.setFromCamera(mouse, camera);
 
@@ -122,7 +174,7 @@ function init() {
       } else {
         // それ以外は元の色にする
         panel.material.color.setHex(0x00FF00);
-      }
+      } 
     });
 
     // レンダリング
@@ -162,7 +214,7 @@ function init() {
   BtnCart.addEventListener("click",() =>{
     console.log("ボタンがクリックされました");
     cartElement.classList.toggle('cart-open');
-    cameraControls.dolly(100, true);
+    cameraControls.fitTo(meshList[0], true);
   });
 
   const descriptionElement = document.querySelector('.description');
