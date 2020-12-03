@@ -15,9 +15,10 @@
 
 #wrapper nav {
     display: inline-block;
-    font-size: 120%;
+    font-size: 0.8em;
     text-align: center;
     padding: 15px 20px 15px 28px;
+    color: #fff;
 }
 
 .CG {
@@ -27,31 +28,51 @@
 
 a.btn-Back {
     position: fixed;
-    top: 12%;
-    right: 20px;
+    top: 10%;
+    right: 25px;
     display: inline-block;
     text-decoration: none;
     text-align: center;
-    line-height: 3em;
+    line-height: 3rem;
     background: #c08c5b;/*ボタン色*/
     color: rgb(255, 255, 255);
     border-radius: 100%;
-    width: 60px;
-    height: 60px;
-    font-size: 110%;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6) inset;
+    width: 50px;
+    height: 50px;
+    font-size: 0.8em;
+    z-index: 1;
+}
+
+.btn-AR {
+    position: fixed;
+    top: 20%;
+    right: 25px;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    line-height: 3rem;
+    background: #c08c5b;/*ボタン色*/
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.6) inset;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
     z-index: 1;
 }
 
 .btn-tuika {
     position: fixed;
-    bottom: 80px;
+    bottom: 10%;
     right: 20px;
     display: inline-block;
     padding: 5px 10px;
     text-decoration: none;
+    text-align: center;
     background: #c08c5b;/*ボタン色*/
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.6) inset;
     color: rgb(255, 255, 255);
-    border-radius: 1rem;
+    font-size: 0.8em;
     z-index: 1;
 }
 

@@ -30,56 +30,84 @@ function init() {
   const cameraControls = new CameraControls( camera, renderer.domElement );
 
   //　ライトを作成
-  const light = new THREE.DirectionalLight(0xFFFFFF, 1);
-  scene.add(light);
+  const Ambientlight = new THREE.AmbientLight(0xffffff, 0.4);
+  scene.add(Ambientlight);
 
-  const light2 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light2.position.set(-80, 30, 0);
-  scene.add(light2);
+  // const light1 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light1.position.set(-70, 0, 0);
+  // scene.add(light1);
 
-  const light3 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light3.position.set(0, 30, 0);
-  scene.add(light3);
+  // const light2 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light2.position.set(-30, 0, -10);
+  // scene.add(light2);
 
-  const light4 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light4.position.set(80, 30, 0);
-  scene.add(light4);
+  // const light3 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light3.position.set(20, 0, -10);
+  // scene.add(light3);
 
-  const light5 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light5.position.set(-80, 30, 100);
-  scene.add(light5);
+  // const light4 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light4.position.set(70, 0, -10);
+  // scene.add(light4);
 
-  const light6 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light6.position.set(0, 30, 100);
-  scene.add(light6);
+  // const light5 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light5.position.set(-85, 0, 100);
+  // scene.add(light5);
 
-  const light7 = new THREE.PointLight(0xFFFFFF, 2, 100);
-  light7.position.set(80, 30, 100);
-  scene.add(light7);
+  // const light6 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light6.position.set(-30, 0, 100);
+  // scene.add(light6);
+
+  // const light7 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light7.position.set(30, 0, 100);
+  // scene.add(light7);
+
+  // const light8 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light8.position.set(85, 0, 100);
+  // scene.add(light8);
+
+  // const light9 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light9.position.set(-80, 0, 50);
+  // scene.add(light9);
+
+  // const light10 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
+  // light10.position.set(80, 0, 50);
+  // scene.add(light10);
 
   // 壁を作成
   const geometry = new THREE.PlaneGeometry(200, 100, 100);
-  const material = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+  const material = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    emissive: 0x858585,
+  });
   const plane = new THREE.Mesh(geometry, material);
   plane.position.set(0, 0, -25);
   scene.add(plane);
 
   const geometry2 = new THREE.PlaneGeometry(150, 100, 100);
-  const material2 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+  const material2 = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    emissive: 0x858585,
+  });
   const plane2 = new THREE.Mesh(geometry2, material2);
   plane2.position.set(100, 0, 50);
   plane2.rotation.y = -1.5708;
   scene.add(plane2);
 
   const geometry3 = new THREE.PlaneGeometry(150, 100, 100);
-  const material3 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+  const material3 = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    emissive: 0x858585,
+  });
   const plane3 = new THREE.Mesh(geometry3, material3);
   plane3.position.set(-100, 0, 50);
   plane3.rotation.y = 1.5708;
   scene.add(plane3);
 
   const geometry4 = new THREE.PlaneGeometry(200, 100, 100);
-  const material4 = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+  const material4 = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    emissive: 0x858585,
+  });
   const plane4 = new THREE.Mesh(geometry4, material4);
   plane4.position.set(0, 0, 125);
   plane4.rotation.y = 3.1416;
@@ -87,7 +115,12 @@ function init() {
 
   //床
   const geometry5 = new THREE.PlaneGeometry(200, 150, 100);
-  const material5 = new THREE.MeshLambertMaterial({color: 0xFFFFFF, side:THREE.DoubleSide});
+  // const material5 = new THREE.MeshLambertMaterial({color: 0xa86f4c, side:THREE.DoubleSide});
+  const loader = new THREE.TextureLoader();
+  const texture2 = loader.load('images/yuka.jpeg');
+  const material5 = new THREE.MeshBasicMaterial({
+    map: texture2,
+  });
   const plane5 = new THREE.Mesh(geometry5, material5);
   plane5.position.set(0, -50, 50);
   plane5.rotation.x = -1.5708;
@@ -95,12 +128,16 @@ function init() {
 
   const meshList = [];
   for (let i = 0; i< 4; i++) {
-    const PanelGeometry = new THREE.PlaneGeometry(20, 30, 10);
-    const PanelMaterial = new THREE.MeshLambertMaterial({color: 0x00FF00, side:THREE.DoubleSide});
-    const panel = new THREE.Mesh(PanelGeometry, PanelMaterial);
-    scene.add(panel)
+    const PanelGeometry = new THREE.PlaneGeometry(30, 20, 0);
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('images/image01.jpg');
+    const material01 = new THREE.MeshBasicMaterial({
+      map: texture,
+    });
+    const panel = new THREE.Mesh(PanelGeometry, material01);
+    scene.add(panel);
 
-    panel.position.set(-60 + 40 *i, 0, -20);
+    panel.position.set(-60 + 40 *i, 0, -24);
     
     meshList.push(panel);
   };
@@ -148,7 +185,7 @@ function init() {
       // 交差しているオブジェクトが1つ以上存在し、
       // 交差しているオブジェクトの1番目(最前面)のものだったら
       if (intersects.length > 0 && panel === intersects[0].object) {
-        // 色を赤くする
+        // 近くなる
         cameraControls.fitTo(intersects[0].object, true);
       } 
     });
@@ -165,17 +202,17 @@ function init() {
     // その光線とぶつかったオブジェクトを得る
     const intersects = raycaster.intersectObjects(meshList);
 
-    meshList.map(panel => {
-      // 交差しているオブジェクトが1つ以上存在し、
-      // 交差しているオブジェクトの1番目(最前面)のものだったら
-      if (intersects.length > 0 && panel === intersects[0].object) {
-        // 色を赤くする
-        panel.material.color.setHex(0xff0000);
-      } else {
-        // それ以外は元の色にする
-        panel.material.color.setHex(0x00FF00);
-      } 
-    });
+    // meshList.map(panel => {
+    //   // 交差しているオブジェクトが1つ以上存在し、
+    //   // 交差しているオブジェクトの1番目(最前面)のものだったら
+    //   if (intersects.length > 0 && panel === intersects[0].object) {
+    //     // 色を赤くする
+    //     panel.material.color.setHex(0xff0000);
+    //   } else {
+    //     // それ以外は元の色にする
+    //     panel.material.color.setHex(0x00FF00);
+    //   } 
+    // });
 
     // レンダリング
     renderer.render(scene, camera); 
@@ -214,7 +251,7 @@ function init() {
   BtnCart.addEventListener("click",() =>{
     console.log("ボタンがクリックされました");
     cartElement.classList.toggle('cart-open');
-    cameraControls.fitTo(meshList[0], true);
+    // cameraControls.fitTo(meshList[0], true);
   });
 
   const descriptionElement = document.querySelector('.description');
