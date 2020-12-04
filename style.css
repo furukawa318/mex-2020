@@ -4,7 +4,7 @@
 }
 
 #global-navi {
-    background:#c08c5b;
+    background:#7e5f4d;
     position: fixed;
     top: 0;
     right: 0px;
@@ -133,7 +133,7 @@ footer {
     margin: 0;
     text-align: center;
     text-decoration: none;
-    background: #c08c5b;/*ボタン色*/
+    background: #7e5f4d;/*ボタン色*/
     color: rgb(255, 255, 255);
     position: absolute;
     bottom: 100%;
@@ -147,7 +147,7 @@ footer {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
-    border-bottom: 40px solid #c08c5b;
+    border-bottom: 40px solid #7e5f4d;
 }
 
 .btn-cart:after {
@@ -158,7 +158,7 @@ footer {
     width: 0;
     height: 0;
     border-right: 20px solid transparent;
-    border-bottom: 40px solid #c08c5b;
+    border-bottom: 40px solid #7e5f4d;
 }
 
 .cart-body {
@@ -220,7 +220,7 @@ footer {
     padding: 10px 3px;
     text-align: center;
     text-decoration: none;
-    background: #8f643d;/*ボタン色*/
+    background: #7e5f4d;/*ボタン色*/
     position: absolute;
     color: rgb(255, 255, 255);
     z-index: 2;
@@ -235,7 +235,7 @@ footer {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
-    border-bottom: 40px solid #8f643d;
+    border-bottom: 40px solid #7e5f4d;
 }
 
 .btn-description:after {
@@ -246,7 +246,7 @@ footer {
     width: 0;
     height: 0;
     border-right: 20px solid transparent;
-    border-bottom: 40px solid #8f643d;
+    border-bottom: 40px solid #7e5f4d;
 }
 
 .description-body {

@@ -17,6 +17,7 @@ function init() {
 
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(0xe5d2c5);
 
   // シーンを作成
   const scene = new THREE.Scene();
