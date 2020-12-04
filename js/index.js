@@ -131,7 +131,7 @@ function init() {
   for (let i = 0; i< 4; i++) {
     const PanelGeometry = new THREE.PlaneGeometry(30, 20, 0);
     const loader = new THREE.TextureLoader();
-    const texture = loader.load('images/image01.jpg');
+    const texture = loader.load(`images/image0${i}.jpg`);
     const material01 = new THREE.MeshBasicMaterial({
       map: texture,
     });
