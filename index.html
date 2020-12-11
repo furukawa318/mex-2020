@@ -4,120 +4,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=l"/>
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="css/ress.min.css">
   <link rel="stylesheet" href="style.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
-  <script src="js/controls/OrbitControls.js"></script>
-  <script src="js/camera-controls.min.js"></script>
-  <script src="js/index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script>
+  <script src="js/OrbitControls.js"></script>
+
+  <script>
+    // ページの読み込みを待つ
+    window.addEventListener('load', init);
+
+    function init() {
+        // サイズを指定
+        const width = 960;
+        const height = 540;
+
+        //マウス座標管理のベクトルを作成
+        const mouse = new THREE.Vector2();
+
+        //canvas要素の参照取得する
+        const canvas = document.querySelector('#myCanvas');
+
+        // レンダラーを作成
+        const renderer = new THREE.WebGLRenderer({
+        canvas: canvas
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(width, height);
+
+        // シーンを作成
+        const scene = new THREE.Scene();
+
+        // カメラを作成
+        const camera = new THREE.PerspectiveCamera(30, width / height);
+        camera.position.set(0, 0, +1000);
+
+        const geometry = new THREE.BoxBufferGeometry(50, 50, 50);
+
+        // 光源を作成
+        const directionalLight = new THREE.DirectionalLight(0xffffff);
+        directionalLight.position.set(1, 1, 1);
+        scene.add(directionalLight);
+
+        const ambientLight = new THREE.AmbientLight(0x333333);
+        scene.add(ambientLight);
+
+        //マウスとの交差を調べたいものは配列に格納
+        const meshList = [];
+        for (let i = 0; i < 200; i++) {
+          const material = new THREE.MeshStandardMaterial({ color: 0xffffff});
+
+          const mesh= new THREE.Mesh(geometry, material);
+          mesh.position.x = (Math.random() - 0.5) * 800;
+          mesh.position.y = (Math.random() - 0.5) * 800;
+          mesh.position.z = (Math.random() - 0.5) * 800;
+          mesh.rotation.x = Math.random() * 2 * Math.PI;
+          mesh.rotation.y = Math.random() * 2 * Math.PI;
+          mesh.rotation.z = Math.random() * 2 * Math.PI;
+          scene.add(mesh);
+
+          //配列に保存
+          meshList.push(mesh);
+        }
+        
+        //レイキャストを作成
+        const raycaster = new THREE.Raycaster();
+
+        //マウスイベントを登録
+        canvas.addEventListener('mousemove', handleMouseMove);
+        tick();
+
+        //マウスを動かしたときのイベント
+        function handleMouseMove(event) {
+          const element = event.currentTarget;
+
+          //canvas要素のXY座標
+          const x = event.clientX - element.offsetLeft;
+          const y = event.clientY - element.offsetTop;
+
+          //canvas要素の幅と高さ
+          const w = element.offsetWidth;
+          const h = element.offsetHeight;
+
+          //現在のマウス座標を登録する
+          mouse.x = ( x / w ) * 2 - 1;
+          mouse.y = -( y / h ) * 2 + 1;
+        }
+
+        // 毎フレーム時に実行されるループイベントです
+        function tick() {
+          //光線を作成
+          raycaster.setFromCamera(mouse, camera);
+
+          //光線とぶつかったオブジェクトを得る
+          const intersects = raycaster.intersectObjects(meshList);
+
+          meshList.map(mesh =>{
+            if(intersects.length > 0 && mesh === intersects[0].object) {
+              mesh.material.color.setHex(0xff0000);
+            } else {
+              mesh.material.color.setHex(0xffffff);
+            }
+          });
+
+          // レンダリング
+          renderer.render(scene, camera);
+          requestAnimationFrame(tick);
+        }
+      }
+    </script>
 </head>
 
-<body>
-  <div id="wrapper">
-      <nav id="global-navi">
-          <ul class="menu">
-              <p>3D空間におけるショッピングサイト</p>
-          </ul>
-      </nav>
-  </div>
-
- <div class="md-body"><canvas id="myCanvas" class="CG"></canvas></div> 
-
- <a href="#" class="btn-Back">戻る</a>
-
- <div class="btn-AR">
-    <model-viewer
-      src="assets/MIKAN/Mikan2.glb"
-      alt="A 3D model of an astronaut"
-      auto-rotate
-      camera-controls
-      shadow-intensity="1"
-      ar
-      class="mv-css"
-      ar-scale="fixed"
-      interaction-prompt="none"
-      reveal="manual"
-    > 
-      <button
-          slot="ar-button"
-          class="mv-btn"
-        >
-       AR
-      </button>
-    </model-viewer>
- </div>
-
- <a href="" class="btn-tuika">カートに<br>入れる</a>
-   
- <div class="cart-close">
-    <a class="btn-cart">カート</a>
-    <div class="cart-body">
-      <ul class="cart-list">
-        <li class="cart-item">
-          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
-          <div class="cart-detail">
-            <h2 class="cart-title">商品名</h2>
-            <p class="cart-para">商品説明 商品説明 商品説明</p>
-            <input class="cart-input" type="number" value="1">
-          </div>
-        </li>
-        <li class="cart-item">
-          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
-          <div class="cart-detail">
-            <h2 class="cart-title">商品名</h2>
-            <p class="cart-para">商品説明 商品説明 商品説明</p>
-            <input class="cart-input" type="number" value="1">
-          </div>
-        </li>
-        <li class="cart-item">
-          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
-          <div class="cart-detail">
-            <h2 class="cart-title">商品名</h2>
-            <p class="cart-para">商品説明 商品説明 商品説明</p>
-            <input class="cart-input" type="number" value="1">
-          </div>
-        </li>
-        <li class="cart-item">
-          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
-          <div class="cart-detail">
-            <h2 class="cart-title">商品名</h2>
-            <p class="cart-para">商品説明 商品説明 商品説明</p>
-            <input class="cart-input" type="number" value="1">
-          </div>
-        </li>
-        <li class="cart-item">
-          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
-          <div class="cart-detail">
-            <h2 class="cart-title">商品名</h2>
-            <p class="cart-para">商品説明 商品説明 商品説明</p>
-            <input class="cart-input" type="number" value="1">
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div><!-- /.cart -->
-
-  <div class="description">
-    <a class="btn-description">商品詳細</a>
-    <div class="description-body">
-      <h2 class="description-title">商品の名前</h2>
-      <h2 class="description-price">￥値段</h2>
-      <p class="description-para">
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-        ここに商品の説明文が入ります。
-      </p>
-    </div>
-  </div><!--/.description-->
+<body class="md-body">
+    
+  <canvas id="myCanvas"></canvas>
 
 </body>
-
 
 </html>

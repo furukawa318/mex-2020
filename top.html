@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="md" lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="css/ress.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
+  <script src="js/controls/OrbitControls.js"></script>
+  <script src="js/camera-controls.min.js"></script>
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+      <nav id="global-navi">
+          <ul class="menu">
+              <p>3D空間におけるショッピングサイト</p>
+          </ul>
+      </nav>
+  </div>
+
+ <div class="md-body"><canvas id="myCanvas" class="CG"></canvas></div> 
+
+ <a href="#" class="btn-Back">戻る</a>
+
+ <div class="btn-AR">
+    <model-viewer
+      src="assets/MIKAN/Mikan2.glb"
+      alt="A 3D model of an astronaut"
+      auto-rotate
+      camera-controls
+      shadow-intensity="1"
+      ar
+      class="mv-css"
+      ar-scale="fixed"
+      interaction-prompt="none"
+      reveal="manual"
+    > 
+      <button
+          slot="ar-button"
+          class="mv-btn"
+        >
+       AR
+      </button>
+    </model-viewer>
+ </div>
+
+ <a href="" class="btn-tuika">カートに<br>入れる</a>
+   
+ <div class="cart-close">
+    <a class="btn-cart">カート</a>
+    <div class="cart-body">
+      <ul class="cart-list">
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+        <li class="cart-item">
+          <img class="cart-img" src="images/sample.jpg" alt="商品画像">
+          <div class="cart-detail">
+            <h2 class="cart-title">商品名</h2>
+            <p class="cart-para">商品説明 商品説明 商品説明</p>
+            <input class="cart-input" type="number" value="1">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div><!-- /.cart -->
+
+  <div class="description">
+    <a class="btn-description">商品詳細</a>
+    <div class="description-body">
+      <h2 class="description-title">商品の名前</h2>
+      <h2 class="description-price">￥値段</h2>
+      <p class="description-para">
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+        ここに商品の説明文が入ります。
+      </p>
+    </div>
+  </div><!--/.description-->
+
+</body>
+
+
+</html>
