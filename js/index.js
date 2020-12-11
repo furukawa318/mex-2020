@@ -38,42 +38,6 @@ function init() {
   // light1.position.set(-70, 0, 0);
   // scene.add(light1);
 
-  // const light2 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light2.position.set(-30, 0, -10);
-  // scene.add(light2);
-
-  // const light3 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light3.position.set(20, 0, -10);
-  // scene.add(light3);
-
-  // const light4 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light4.position.set(70, 0, -10);
-  // scene.add(light4);
-
-  // const light5 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light5.position.set(-85, 0, 100);
-  // scene.add(light5);
-
-  // const light6 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light6.position.set(-30, 0, 100);
-  // scene.add(light6);
-
-  // const light7 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light7.position.set(30, 0, 100);
-  // scene.add(light7);
-
-  // const light8 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light8.position.set(85, 0, 100);
-  // scene.add(light8);
-
-  // const light9 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light9.position.set(-80, 0, 50);
-  // scene.add(light9);
-
-  // const light10 = new THREE.PointLight(0xFFFFFF, 0.3, 100);
-  // light10.position.set(80, 0, 50);
-  // scene.add(light10);
-
   // 壁を作成
   const geometry = new THREE.PlaneGeometry(200, 100, 100);
   const material = new THREE.MeshLambertMaterial({
@@ -116,7 +80,6 @@ function init() {
 
   //床
   const geometry5 = new THREE.PlaneGeometry(200, 150, 100);
-  // const material5 = new THREE.MeshLambertMaterial({color: 0xa86f4c, side:THREE.DoubleSide});
   const loader = new THREE.TextureLoader();
   const texture2 = loader.load('images/yuka.jpeg');
   const material5 = new THREE.MeshBasicMaterial({
@@ -242,7 +205,7 @@ function init() {
   }
 
   //　const 新しい名前 = で使えるようにする
-  const cartElement = document.querySelector('.cart');
+  const cartElement = document.querySelector('.cart-close');
   console.log(cartElement);
 
   const BtnCart = document.querySelector('.btn-cart');
