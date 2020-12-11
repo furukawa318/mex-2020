@@ -92,9 +92,9 @@ function init() {
 
   const meshList = [];
   for (let i = 0; i< 4; i++) {
-    const PanelGeometry = new THREE.PlaneGeometry(30, 20, 0);
+    const PanelGeometry = new THREE.PlaneGeometry(30, 30, 0);
     const loader = new THREE.TextureLoader();
-    const texture = loader.load(`images/image0${i}.jpg`);
+    const texture = loader.load(`images/00${i}.jpg`);
     const material01 = new THREE.MeshBasicMaterial({
       map: texture,
     });
