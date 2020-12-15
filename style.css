@@ -3,6 +3,14 @@
     overflow: hidden;
 }
 
+#wrapper nav {
+    display: inline-block;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 15px 20px 15px 28px;
+    color: #fff;
+}
+
 #global-navi {
     background:#7e5f4d;
     position: fixed;
@@ -11,14 +19,6 @@
     width: 100%;
     height: 8%;
     z-index: 1;
-}
-
-#wrapper nav {
-    display: inline-block;
-    font-size: 0.8em;
-    text-align: center;
-    padding: 15px 20px 15px 28px;
-    color: #fff;
 }
 
 .CG {
@@ -59,6 +59,10 @@ a.btn-Back {
     width: 50px;
     height: 50px;
     z-index: 1;
+}
+
+#ARchange {
+    background: transparent;
 }
 
 .mv-css {

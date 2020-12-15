@@ -89,7 +89,7 @@ function init() {
   plane5.position.set(0, -50, 50);
   plane5.rotation.x = -1.5708;
   scene.add(plane5);
-
+  
   const meshList = [];
   for (let i = 0; i< 4; i++) {
     const PanelGeometry = new THREE.PlaneGeometry(30, 30, 0);
@@ -151,6 +151,8 @@ function init() {
       if (intersects.length > 0 && panel === intersects[0].object) {
         // 近くなる
         cameraControls.fitTo(intersects[0].object, true);
+        // ARモデルが変わる
+        document.getElementById('ARchange').src = 'assets/models/Astronaut.glb';
       } 
     });
   }
@@ -228,5 +230,8 @@ function init() {
     console.log("ボタンがクリックされました");
     descriptionElement.classList.toggle('description-open');
   });
+
+  const ARchange = document.querySelector('.btn-AR');
+  console.log(ARchange);
 
 }
