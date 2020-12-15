@@ -236,8 +236,9 @@ function init() {
   const BackElement = document.querySelector('.btn-Back');
   console.log(BackElement);
 
-  BtnDescription.addEventListener("click",() =>{
+  BackElement.addEventListener("click",() =>{
     console.log("ボタンがクリックされました");
+    cameraControls.moveTo(0, 0, 500, true);
   });
 
 }
