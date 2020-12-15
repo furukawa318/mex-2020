@@ -233,7 +233,11 @@ function init() {
     descriptionElement.classList.toggle('description-open');
   });
 
-  const ARchange = document.querySelector('.btn-AR');
-  console.log(ARchange);
+  const BackElement = document.querySelector('.btn-Back');
+  console.log(BackElement);
+
+  BtnDescription.addEventListener("click",() =>{
+    console.log("ボタンがクリックされました");
+  });
 
 }

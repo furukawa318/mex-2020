@@ -61,6 +61,10 @@ a.btn-Back {
     z-index: 1;
 }
 
+#default-progress-bar > .mask { 
+    opacity: 0; 
+}
+
 #ARchange {
     background: transparent;
 }
