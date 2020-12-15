@@ -99,6 +99,7 @@ function init() {
       map: texture,
     });
     const panel = new THREE.Mesh(PanelGeometry, material01);
+    panel.name = `panel-${i}`;
     scene.add(panel);
 
     panel.position.set(-60 + 40 *i, 0, -24);
@@ -152,7 +153,7 @@ function init() {
         // 近くなる
         cameraControls.fitTo(intersects[0].object, true);
         // ARモデルが変わる
-        document.getElementById('ARchange').src = 'assets/models/Astronaut.glb';
+        document.getElementById('ARchange').src = 'assets/models/${panel.name}.glb';
       } 
     });
   }
