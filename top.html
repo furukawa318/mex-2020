@@ -26,32 +26,36 @@
 
  <div class="md-body"><canvas id="myCanvas" class="CG"></canvas></div> 
 
- <a href="#" class="btn-Back">戻る</a>
+ <div class="btn-none">
+    <a href="#" class="btn-Back">戻る</a>
+  
 
- <div class="btn-AR">
-    <model-viewer
-      id="ARchange"
-      src="assets/MIKAN/Mikan2.glb"
-      alt="A 3D model of an astronaut"
-      auto-rotate
-      camera-controls
-      shadow-intensity="1"
-      ar
-      class="mv-css"
-      ar-scale="fixed"
-      interaction-prompt="none"
-      reveal="manual"
-    > 
-      <button
-          slot="ar-button"
-          class="mv-btn"
-        >
-       AR
-      </button>
-    </model-viewer>
- </div>
+    <div class="btn-AR">
+      <model-viewer
+        id="ARchange"
+        src="assets/MIKAN/Mikan2.glb"
+        alt="A 3D model of an astronaut"
+        auto-rotate
+        camera-controls
+        shadow-intensity="1"
+        ar
+        class="mv-css"
+        ar-scale="fixed"
+        interaction-prompt="none"
+        reveal="manual"
+      > 
+        <button
+            slot="ar-button"
+            class="mv-btn"
+          >
+        AR
+        </button>
+      </model-viewer>
+    </div>
 
- <a href="" class="btn-tuika">カートに<br>入れる</a>
+    <a href="" class="btn-tuika">カートに<br>入れる</a>
+
+  </div>
    
  <div class="cart-close">
     <a class="btn-cart">カート</a>

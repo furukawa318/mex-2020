@@ -26,6 +26,11 @@
     height: 100%;
 }
 
+.btn-none{
+    display:none;
+}
+
+
 a.btn-Back {
     position: fixed;
     top: 10%;
