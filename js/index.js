@@ -153,8 +153,10 @@ function init() {
         // 近くなる
         cameraControls.fitTo(intersects[0].object, true);
         // ARモデルが変わる
-        console.log(`assets/models/${panel.name}.glb`);
-        document.getElementById('ARchange').src = `assets/models/mamiko${i}.glb`;
+        for (let j = 0; j< 4; j++){
+          console.log(`assets/models/${panel.name}.glb`);
+          document.getElementById('ARchange').src = `assets/models/mamiko${j}.glb`;
+        }
       } 
     });
   }
