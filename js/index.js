@@ -99,7 +99,7 @@ function init() {
       map: texture,
     });
     const panel = new THREE.Mesh(PanelGeometry, material01);
-    panel.name = `panel-${i}`;
+    panel.name = `mamiko${i}`;
     scene.add(panel);
 
     panel.position.set(-60 + 40 *i, 0, -24);
@@ -153,10 +153,8 @@ function init() {
         // 近くなる
         cameraControls.fitTo(intersects[0].object, true);
         // ARモデルが変わる
-        for (let j = 0; j< 4; j++){
-          console.log(`assets/models/${panel.name}.glb`);
-          document.getElementById('ARchange').src = `assets/models/mamiko${j}.glb`;
-        }
+        console.log(`assets/models/${panel.name}.glb`);
+        document.getElementById('ARchange').src = `assets/models/${panel.name}.glb`;
       } 
     });
   }
