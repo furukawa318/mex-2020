@@ -3,6 +3,24 @@
     overflow: hidden;
 }
 
+.top-page {
+    position: relative;
+    max-height: 100%;
+    background:#C6B299;
+    text-align: center;
+}
+
+.top-page p {
+    position: absolute;
+    max-width: 25%;
+    padding: 5px 10px;
+    top: 40%;
+    left: 45%;
+    background:#C6B299;
+    text-align: center;
+    color: #fff;
+}
+
 #wrapper nav {
     display: inline-block;
     font-size: 0.8em;
